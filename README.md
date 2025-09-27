@@ -212,7 +212,7 @@ let config = LicenseChainConfig(
     apiKey: "your-api-key",
     appName: "your-app-name",
     version: "1.0.0",
-    baseUrl: "https://api.licensechain.com" // Optional
+    baseUrl: "https://api.licensechain.app" // Optional
 )
 
 let client = LicenseChainClient(config: config)
@@ -330,7 +330,7 @@ For production, configure ATS properly:
 <dict>
     <key>NSExceptionDomains</key>
     <dict>
-        <key>api.licensechain.com</key>
+        <key>api.licensechain.app</key>
         <dict>
             <key>NSExceptionAllowsInsecureHTTPLoads</key>
             <false/>
@@ -359,7 +359,7 @@ let config = LicenseChainConfig(
     apiKey: "your-api-key",
     appName: "your-app-name",
     version: "1.0.0",
-    baseUrl: "https://api.licensechain.com",
+    baseUrl: "https://api.licensechain.app",
     timeout: 30,        // Request timeout in seconds
     retries: 3,         // Number of retry attempts
     debug: false,       // Enable debug logging
@@ -525,10 +525,10 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🆘 Support
 
-- **Documentation**: [https://docs.licensechain.com/macos](https://docs.licensechain.com/macos)
+- **Documentation**: [https://docs.licensechain.app/macos](https://docs.licensechain.app/macos)
 - **Issues**: [GitHub Issues](https://github.com/LicenseChain/LicenseChain-macOS-SDK/issues)
 - **Discord**: [LicenseChain Discord](https://discord.gg/licensechain)
-- **Email**: support@licensechain.com
+- **Email**: support@licensechain.app
 
 ## 🔗 Related Projects
 
