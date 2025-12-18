@@ -43,8 +43,9 @@ public class LicenseChain {
     }
     
     public func validateLicense(licenseKey: String) async throws -> Bool {
-        let request = ["license_key": licenseKey]
-        let response: [String: Bool] = try await makeRequest(method: "POST", endpoint: "/licenses/validate", body: request)
+        // Use /licenses/verify endpoint with 'key' parameter to match API
+        let request = ["key": licenseKey]
+        let response: [String: Bool] = try await makeRequest(method: "POST", endpoint: "/licenses/verify", body: request)
         return response["valid"] ?? false
     }
     
