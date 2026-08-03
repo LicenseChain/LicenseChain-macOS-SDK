@@ -9,7 +9,7 @@ Official macOS SDK for LicenseChain - Secure license management for macOS applic
 
 ## 🚀 Features
 
-- **ðŸ” Secure Authentication** - User registration, login, and session management
+- **🔐 Secure Authentication** - User registration, login, and session management
 - **📜 License Management** - Create, validate, update, and revoke licenses
 - **🛡 Hardware ID Validation** - Prevent license sharing and unauthorized access
 - **🔔 Webhook Support** - Real-time license events and notifications
@@ -499,7 +499,7 @@ func testIntegration() async throws {
 }
 ```
 
-## ðŸ“ Examples
+## 📝 Examples
 
 See the `Examples/` directory for complete examples:
 
@@ -507,7 +507,7 @@ See the `Examples/` directory for complete examples:
 - `AdvancedFeaturesViewController.swift` - Advanced features and configuration
 - `WebhookIntegrationViewController.swift` - Webhook handling
 
-## ðŸ¤ Contributing
+## 🤝 Contributing
 
 We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
 
