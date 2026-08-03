@@ -11,12 +11,12 @@ Official macOS SDK for LicenseChain - Secure license management for macOS applic
 
 - **ðŸ” Secure Authentication** - User registration, login, and session management
 - **📜 License Management** - Create, validate, update, and revoke licenses
-- **ðŸ›¡ï¸ Hardware ID Validation** - Prevent license sharing and unauthorized access
+- **🛡 Hardware ID Validation** - Prevent license sharing and unauthorized access
 - **🔔 Webhook Support** - Real-time license events and notifications
 - **📊 Analytics Integration** - Track license usage and performance metrics
-- **âš¡ High Performance** - Optimized for macOS runtime
+- **⚡ High Performance** - Optimized for macOS runtime
 - **🔄 Async Operations** - Non-blocking HTTP requests and data processing
-- **ðŸ› ï¸ Easy Integration** - Simple API with comprehensive documentation
+- **🛠 Easy Integration** - Simple API with comprehensive documentation
 
 ## 📦 Installation
 
@@ -367,7 +367,7 @@ let config = LicenseChainConfig(
 )
 ```
 
-## ðŸ›¡ï¸ Security Features
+## 🛡 Security Features
 
 ### Hardware ID Protection
 
@@ -536,7 +536,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [LicenseChain Android SDK](https://github.com/LicenseChain/LicenseChain-Android-SDK)
 ---
 
-**Made with â¤ï¸ for the macOS community**
+**Made with ❤️ for the macOS community**
 
 
 ## API Endpoints
