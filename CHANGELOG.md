@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.0.2] - 2026-10-12
+
+- Synced LicenseChain.podspec to Elastic-2.0, macOS 13, Swift 5.9, and tag v1.0.2.
+
+# Changelog
+
 ## [1.0.1] - 2026-10-10
 
 - Relicensed public surface under Elastic License 2.0 (ELv2).
