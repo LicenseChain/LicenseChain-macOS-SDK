@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
-  spec.name         = "LicenseChain"
-  spec.version      = "1.0.2"
+  spec.name         = "LicenseChainmacOS"
+  spec.version      = "1.0.3"
   spec.summary      = "Official macOS SDK for LicenseChain - Secure license management for macOS applications"
   spec.description  = <<-DESC
                    LicenseChain macOS SDK provides secure license management for macOS applications.
