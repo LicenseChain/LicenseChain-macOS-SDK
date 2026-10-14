@@ -1,9 +1,10 @@
 # LicenseChain macOS SDK
 
 [![License](https://img.shields.io/badge/license-Elastic--2.0-blue.svg)](LICENSE)
-[![macOS](https://img.shields.io/badge/macOS-10.15+-blue.svg)](https://developer.apple.com/macos/)
+[![macOS](https://img.shields.io/badge/macOS-10.15+-blue.svg)](https://www.apple.com/macos/)
 [![Swift](https://img.shields.io/badge/Swift-5.0+-orange.svg)](https://swift.org/)
-[![CocoaPods](https://img.shields.io/badge/CocoaPods-1.0+-green.svg)](https://cocoapods.org/)
+[![CocoaPods](https://img.shields.io/badge/CocoaPods-not%20published-lightgrey.svg)](https://github.com/LicenseChain/LicenseChain-macOS-SDK)
+[![CI](https://github.com/LicenseChain/LicenseChain-macOS-SDK/actions/workflows/ci.yml/badge.svg)](https://github.com/LicenseChain/LicenseChain-macOS-SDK/actions/workflows/ci.yml)
 
 Official macOS SDK for LicenseChain - Secure license management for macOS applications.
 
@@ -538,14 +539,12 @@ This project is licensed under the Elastic License 2.0 (ELv2) — see the [LICEN
 
 **Made with ❤️ for the macOS community**
 
-
 ## API Endpoints
 
 Use the canonical API base URL `https://api.licensechain.app/v1`. The SDK also accepts the root host and normalizes requests to the same API version.
 
 ### Base URL
 - **Production**: https://api.licensechain.app/v1\n- **Development**: https://api.licensechain.app/v1\n\n### Available Endpoints\n\n| Method | Endpoint | Description |\n|--------|----------|-------------|\n| GET | /v1/health | Health check |\n| POST | /v1/auth/login | User login |\n| POST | /v1/auth/register | User registration |\n| GET | /v1/apps | List applications |\n| POST | /v1/apps | Create application |\n| GET | /v1/licenses | List licenses |\n| POST | /v1/licenses/verify | Verify license |\n| GET | /v1/webhooks | List webhooks |\n| POST | /v1/webhooks | Create webhook |\n| GET | /v1/analytics | Get analytics |\n\n**Note**: The SDK automatically prepends /v1 to all endpoints, so you only need to specify the path (e.g., /auth/login instead of /v1/auth/login).
-
 
 ## LicenseChain API (v1)
 
