@@ -56,7 +56,7 @@ public enum LicenseChainLicenseAssertion {
         guard jws.header.algorithm == .RS256 else {
             throw LicenseChainError.validationError("expected RS256")
         }
-        let verifier = Verifier(signatureAlgorithm: .RS256, publicKey: secKey)!
+        let verifier = Verifier(signatureAlgorithm: .RS256, key: secKey)!
         let payload = try jws.validate(using: verifier).payload
         guard let obj = try JSONSerialization.jsonObject(with: payload.data()) as? [String: Any] else {
             throw LicenseChainError.invalidResponse

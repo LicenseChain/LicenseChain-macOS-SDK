@@ -35,7 +35,7 @@ public struct License: Codable {
         createdAt = try container.decode(String.self, forKey: .createdAt)
         updatedAt = try container.decode(String.self, forKey: .updatedAt)
         expiresAt = try container.decodeIfPresent(String.self, forKey: .expiresAt)
-        metadata = try container.decodeIfPresent([String: Any].self, forKey: .metadata)
+        metadata = try JSONDictCoding.decode(container, forKey: .metadata)
     }
     
     public func encode(to encoder: Encoder) throws {
@@ -48,11 +48,11 @@ public struct License: Codable {
         try container.encode(createdAt, forKey: .createdAt)
         try container.encode(updatedAt, forKey: .updatedAt)
         try container.encodeIfPresent(expiresAt, forKey: .expiresAt)
-        try container.encodeIfPresent(metadata, forKey: .metadata)
+        try JSONDictCoding.encode(&container, metadata, forKey: .metadata)
     }
 }
 
-public struct CreateLicenseRequest: Codable {
+public struct CreateLicenseRequest: Encodable {
     public let userId: String
     public let productId: String
     public let metadata: [String: Any]?
@@ -73,7 +73,7 @@ public struct CreateLicenseRequest: Codable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(userId, forKey: .userId)
         try container.encode(productId, forKey: .productId)
-        try container.encodeIfPresent(metadata, forKey: .metadata)
+        try JSONDictCoding.encode(&container, metadata, forKey: .metadata)
     }
 }
 
@@ -126,7 +126,7 @@ public struct User: Codable {
         name = try container.decode(String.self, forKey: .name)
         createdAt = try container.decode(String.self, forKey: .createdAt)
         updatedAt = try container.decode(String.self, forKey: .updatedAt)
-        metadata = try container.decodeIfPresent([String: Any].self, forKey: .metadata)
+        metadata = try JSONDictCoding.decode(container, forKey: .metadata)
     }
     
     public func encode(to encoder: Encoder) throws {
@@ -136,14 +136,20 @@ public struct User: Codable {
         try container.encode(name, forKey: .name)
         try container.encode(createdAt, forKey: .createdAt)
         try container.encode(updatedAt, forKey: .updatedAt)
-        try container.encodeIfPresent(metadata, forKey: .metadata)
+        try JSONDictCoding.encode(&container, metadata, forKey: .metadata)
     }
 }
 
-public struct CreateUserRequest: Codable {
+public struct CreateUserRequest: Encodable {
     public let email: String
     public let name: String
     public let metadata: [String: Any]?
+
+    enum CodingKeys: String, CodingKey {
+        case email
+        case name
+        case metadata
+    }
     
     public init(email: String, name: String, metadata: [String: Any]? = nil) {
         self.email = email
@@ -155,7 +161,7 @@ public struct CreateUserRequest: Codable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(email, forKey: .email)
         try container.encode(name, forKey: .name)
-        try container.encodeIfPresent(metadata, forKey: .metadata)
+        try JSONDictCoding.encode(&container, metadata, forKey: .metadata)
     }
 }
 
@@ -210,7 +216,7 @@ public struct Product: Codable {
         currency = try container.decode(String.self, forKey: .currency)
         createdAt = try container.decode(String.self, forKey: .createdAt)
         updatedAt = try container.decode(String.self, forKey: .updatedAt)
-        metadata = try container.decodeIfPresent([String: Any].self, forKey: .metadata)
+        metadata = try JSONDictCoding.decode(container, forKey: .metadata)
     }
     
     public func encode(to encoder: Encoder) throws {
@@ -222,16 +228,24 @@ public struct Product: Codable {
         try container.encode(currency, forKey: .currency)
         try container.encode(createdAt, forKey: .createdAt)
         try container.encode(updatedAt, forKey: .updatedAt)
-        try container.encodeIfPresent(metadata, forKey: .metadata)
+        try JSONDictCoding.encode(&container, metadata, forKey: .metadata)
     }
 }
 
-public struct CreateProductRequest: Codable {
+public struct CreateProductRequest: Encodable {
     public let name: String
     public let description: String?
     public let price: Double
     public let currency: String
     public let metadata: [String: Any]?
+
+    enum CodingKeys: String, CodingKey {
+        case name
+        case description
+        case price
+        case currency
+        case metadata
+    }
     
     public init(name: String, description: String?, price: Double, currency: String, metadata: [String: Any]? = nil) {
         self.name = name
@@ -247,7 +261,7 @@ public struct CreateProductRequest: Codable {
         try container.encodeIfPresent(description, forKey: .description)
         try container.encode(price, forKey: .price)
         try container.encode(currency, forKey: .currency)
-        try container.encodeIfPresent(metadata, forKey: .metadata)
+        try JSONDictCoding.encode(&container, metadata, forKey: .metadata)
     }
 }
 

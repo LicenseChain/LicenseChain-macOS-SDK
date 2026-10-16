@@ -45,11 +45,11 @@ public class LicenseChain {
     }
     
     public func updateLicense(licenseId: String, updates: [String: Any]) async throws -> License {
-        return try await makeRequest(method: "PUT", endpoint: "/licenses/\(licenseId)", body: updates)
+        return try await makeRequestJSON(method: "PUT", endpoint: "/licenses/\(licenseId)", body: updates)
     }
     
     public func revokeLicense(licenseId: String) async throws {
-        try await makeRequest(method: "DELETE", endpoint: "/licenses/\(licenseId)")
+        let _: EmptyResponse = try await makeRequest(method: "DELETE", endpoint: "/licenses/\(licenseId)")
     }
     
     public func validateLicense(licenseKey: String, hwuid: String? = nil) async throws -> Bool {
@@ -67,7 +67,7 @@ public class LicenseChain {
     }
 
     public func listUserLicenses(userId: String, page: Int = 1, limit: Int = 10) async throws -> LicenseListResponse {
-        let params = ["user_id": userId, "page": page, "limit": limit]
+        let params: [String: Any] = ["user_id": userId, "page": page, "limit": limit]
         return try await makeRequest(method: "GET", endpoint: "/licenses", queryParams: params)
     }
     
@@ -88,15 +88,15 @@ public class LicenseChain {
     }
     
     public func updateUser(userId: String, updates: [String: Any]) async throws -> User {
-        return try await makeRequest(method: "PUT", endpoint: "/users/\(userId)", body: updates)
+        return try await makeRequestJSON(method: "PUT", endpoint: "/users/\(userId)", body: updates)
     }
     
     public func deleteUser(userId: String) async throws {
-        try await makeRequest(method: "DELETE", endpoint: "/users/\(userId)")
+        let _: EmptyResponse = try await makeRequest(method: "DELETE", endpoint: "/users/\(userId)")
     }
     
     public func listUsers(page: Int = 1, limit: Int = 10) async throws -> UserListResponse {
-        let params = ["page": page, "limit": limit]
+        let params: [String: Any] = ["page": page, "limit": limit]
         return try await makeRequest(method: "GET", endpoint: "/users", queryParams: params)
     }
     
@@ -117,15 +117,15 @@ public class LicenseChain {
     }
     
     public func updateProduct(productId: String, updates: [String: Any]) async throws -> Product {
-        return try await makeRequest(method: "PUT", endpoint: "/products/\(productId)", body: updates)
+        return try await makeRequestJSON(method: "PUT", endpoint: "/products/\(productId)", body: updates)
     }
     
     public func deleteProduct(productId: String) async throws {
-        try await makeRequest(method: "DELETE", endpoint: "/products/\(productId)")
+        let _: EmptyResponse = try await makeRequest(method: "DELETE", endpoint: "/products/\(productId)")
     }
     
     public func listProducts(page: Int = 1, limit: Int = 10) async throws -> ProductListResponse {
-        let params = ["page": page, "limit": limit]
+        let params: [String: Any] = ["page": page, "limit": limit]
         return try await makeRequest(method: "GET", endpoint: "/products", queryParams: params)
     }
     
@@ -146,11 +146,11 @@ public class LicenseChain {
     }
     
     public func updateWebhook(webhookId: String, updates: [String: Any]) async throws -> Webhook {
-        return try await makeRequest(method: "PUT", endpoint: "/webhooks/\(webhookId)", body: updates)
+        return try await makeRequestJSON(method: "PUT", endpoint: "/webhooks/\(webhookId)", body: updates)
     }
     
     public func deleteWebhook(webhookId: String) async throws {
-        try await makeRequest(method: "DELETE", endpoint: "/webhooks/\(webhookId)")
+        let _: EmptyResponse = try await makeRequest(method: "DELETE", endpoint: "/webhooks/\(webhookId)")
     }
     
     public func listWebhooks() async throws -> [Webhook] {
@@ -161,16 +161,16 @@ public class LicenseChain {
     // MARK: - Health Check
     
     public func ping() async throws -> [String: Any] {
-        return try await makeRequest(method: "GET", endpoint: "/ping")
+        return try await makeRequestDictionary(method: "GET", endpoint: "/ping")
     }
     
     public func health() async throws -> [String: Any] {
-        return try await makeRequest(method: "GET", endpoint: "/health")
+        return try await makeRequestDictionary(method: "GET", endpoint: "/health")
     }
     
     // MARK: - Private Methods
     
-    private func makeRequest<T: Codable>(method: String, endpoint: String, body: Any? = nil, queryParams: [String: Any]? = nil) async throws -> T {
+    private func makeRequest<T: Codable, Body: Encodable>(method: String, endpoint: String, body: Body? = nil, queryParams: [String: Any]? = nil) async throws -> T {
         var urlComponents = URLComponents(string: baseURL + endpoint)
         
         if let queryParams = queryParams {
@@ -191,9 +191,35 @@ public class LicenseChain {
         request.timeoutInterval = timeout
         
         if let body = body {
-            request.httpBody = try JSONSerialization.data(withJSONObject: body)
+            request.httpBody = try JSONEncoder().encode(body)
         }
         
+        return try await performRequest(request)
+    }
+
+    private func makeRequest<T: Codable>(method: String, endpoint: String, queryParams: [String: Any]? = nil) async throws -> T {
+        try await makeRequest(method: method, endpoint: endpoint, body: Optional<EmptyResponse>.none, queryParams: queryParams)
+    }
+
+    private func makeRequestJSON<T: Codable>(method: String, endpoint: String, body: [String: Any]? = nil, queryParams: [String: Any]? = nil) async throws -> T {
+        var urlComponents = URLComponents(string: baseURL + endpoint)
+        if let queryParams = queryParams {
+            urlComponents?.queryItems = queryParams.map { URLQueryItem(name: $0.key, value: String(describing: $0.value)) }
+        }
+        guard let url = urlComponents?.url else {
+            throw LicenseChainError.invalidURL
+        }
+        var request = URLRequest(url: url)
+        request.httpMethod = method
+        request.setValue("Bearer \(apiKey)", forHTTPHeaderField: "Authorization")
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("1.0", forHTTPHeaderField: "X-API-Version")
+        request.setValue("macos-sdk", forHTTPHeaderField: "X-Platform")
+        request.setValue("LicenseChain-macOS-SDK/1.0.0", forHTTPHeaderField: "User-Agent")
+        request.timeoutInterval = timeout
+        if let body = body {
+            request.httpBody = try JSONSerialization.data(withJSONObject: body)
+        }
         return try await performRequest(request)
     }
 
