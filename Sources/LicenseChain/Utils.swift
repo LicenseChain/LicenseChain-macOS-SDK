@@ -48,7 +48,7 @@ public class LicenseChainUtils {
             if let stringValue = value as? String {
                 sanitized[key] = sanitizeInput(stringValue)
             } else if let arrayValue = value as? [Any] {
-                sanitized[key] = arrayValue.map { item in
+                sanitized[key] = arrayValue.map { item -> Any in
                     if let stringItem = item as? String {
                         return sanitizeInput(stringItem)
                     }
