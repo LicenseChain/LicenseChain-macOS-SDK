@@ -20,6 +20,7 @@ Pod::Spec.new do |spec|
   
   spec.dependency 'Alamofire', '~> 5.8'
   spec.dependency 'SwiftyJSON', '~> 5.0'
+  spec.dependency 'JOSESwift', '~> 3.0'
   
   spec.requires_arc = true
 end
