@@ -3,7 +3,7 @@
 [![License](https://img.shields.io/badge/license-Elastic--2.0-blue.svg)](LICENSE)
 [![macOS](https://img.shields.io/badge/macOS-10.15+-blue.svg)](https://www.apple.com/macos/)
 [![Swift](https://img.shields.io/badge/Swift-5.0+-orange.svg)](https://swift.org/)
-[![CocoaPods](https://img.shields.io/badge/CocoaPods-not%20published-lightgrey.svg)](https://github.com/LicenseChain/LicenseChain-macOS-SDK)
+[![CocoaPods](https://img.shields.io/cocoapods/v/LicenseChainmacOS.svg)](https://cocoapods.org/pods/LicenseChainmacOS)
 [![CI](https://github.com/LicenseChain/LicenseChain-macOS-SDK/actions/workflows/ci.yml/badge.svg)](https://github.com/LicenseChain/LicenseChain-macOS-SDK/actions/workflows/ci.yml)
 
 Official macOS SDK for LicenseChain - Secure license management for macOS applications.
@@ -26,7 +26,7 @@ Official macOS SDK for LicenseChain - Secure license management for macOS applic
 Add to your `Podfile`:
 
 ```ruby
-pod 'LicenseChain', '~> 1.0'
+pod 'LicenseChainmacOS', '~> 1.0.3'
 ```
 
 Then run:
