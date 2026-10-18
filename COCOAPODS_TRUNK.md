@@ -1,6 +1,6 @@
 # CocoaPods trunk publish (LicenseChainmacOS)
 
-Podspec file: `LicenseChain.podspec`  
+Podspec file: `LicenseChainmacOS.podspec`  
 Pod name: **LicenseChainmacOS**  
 Version: **1.0.3**  
 Git tag: **v1.0.3** (`a34dc18ce53417f836d3fcde8f3306d5cc27c918`)  
@@ -18,10 +18,10 @@ pod trunk register support@licensechain.app "LicenseChain LLC" --description="Li
 git clone https://github.com/LicenseChain/LicenseChain-macOS-SDK.git
 cd LicenseChain-macOS-SDK
 git checkout v1.0.3
-pod spec lint LicenseChain.podspec --allow-warnings
+pod spec lint LicenseChainmacOS.podspec --allow-warnings
 
 # 3) Push
-pod trunk push LicenseChain.podspec --allow-warnings
+pod trunk push LicenseChainmacOS.podspec --allow-warnings
 
 # 4) Verify
 pod trunk info LicenseChainmacOS
