@@ -1,6 +1,6 @@
 # LicenseChain macOS SDK
 
-[![License](https://img.shields.io/badge/license-Elastic--2.0-blue.svg)](LICENSE)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![macOS](https://img.shields.io/badge/macOS-10.15+-blue.svg)](https://www.apple.com/macos/)
 [![Swift](https://img.shields.io/badge/Swift-5.0+-orange.svg)](https://swift.org/)
 [![CocoaPods](https://img.shields.io/cocoapods/v/LicenseChainmacOS.svg)](https://cocoapods.org/pods/LicenseChainmacOS)
@@ -544,7 +544,7 @@ We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) f
 
 ## 📄 License
 
-This project is licensed under the Elastic License 2.0 (ELv2) — see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License (ELv2) — see the [LICENSE](LICENSE) file for details.
 
 ## 🆘 Support
 

@@ -9,7 +9,7 @@ Pod::Spec.new do |spec|
                    DESC
 
   spec.homepage     = "https://github.com/LicenseChain/LicenseChain-macOS-SDK"
-  spec.license      = { :type => "Elastic-2.0", :file => "LICENSE" }
+  spec.license      = { :type => "MIT", :file => "LICENSE" }
   spec.author       = { "LicenseChain Team" => "support@licensechain.app" }
   
   spec.platform     = :osx, "13.0"
